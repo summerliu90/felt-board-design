@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "palettes": [
+    {
+      "name": "文明成长·绘本青绿",
+      "roles": {
+        "bg": "#EDE4CF",
+        "text": "#123F48",
+        "highlight": "#C65B36",
+        "text2": "#58645D",
+        "accent": "#D8B75A"
+      },
+      "secondary": {
+        "teal": "#28666A",
+        "leaf": "#71856A",
+        "paper": "#F7EFD9"
+      },
+      "note": "设计起点；须结合背景颜色、印样与阅读对比复核，不自动重绘插画"
+    }
+  ]
+}

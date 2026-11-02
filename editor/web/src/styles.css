@@ -1,0 +1,315 @@
+@import 'tailwindcss';
+
+/*
+ * The "paper" look: a warm ivory ground, cards a shade lighter, ink for text,
+ * vermilion as the one accent, serif for titles. Every colour the UI uses is
+ * one of these tokens, so `bg-paper`, `text-ink`, `border-line`… are the
+ * whole palette.
+ */
+@theme {
+  --color-paper: #f3efe6;
+  --color-paper-deep: #ebe5d8;
+  --color-card: #fbf9f4;
+  --color-line: #e2dccf;
+  --color-line-strong: #d6cfbf;
+  --color-ink: #1c1b18;
+  --color-ink-2: #4a463e;
+  --color-muted: #6f6a60;
+  --color-faint: #8a8478;
+  --color-ghost: #b8b0a0;
+  --color-accent: #c23a22;
+  --color-accent-dark: #8f2715;
+  --color-accent-soft: #f6e3dc;
+  --color-ok: #4f8a5b;
+
+  /* System faces only: a web font for Chinese is megabytes of slices, and
+     fetching them stalled the whole page (uploads included) for seconds. */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  --font-serif: 'Songti SC', 'STSong', 'Noto Serif CJK SC', 'Source Han Serif SC', 'SimSun', serif;
+
+  --shadow-card: 0 1px 0 var(--color-line), 0 8px 24px rgba(60, 48, 20, 0.06);
+  --shadow-float: 0 1px 0 var(--color-line), 0 8px 24px rgba(60, 48, 20, 0.1);
+  --shadow-pop: 0 2px 4px rgba(60, 48, 20, 0.08), 0 16px 40px rgba(60, 48, 20, 0.16);
+}
+
+/* The editor owns its own chrome; keep the page from scrolling behind it. */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+canvas {
+  display: block;
+}
+
+/*
+ * The macOS desktop app has no title bar: the page runs to the top of the
+ * window (main.tsx sets .desktop-mac). The traffic lights show on the home page
+ * only, in its empty top-left corner. A strip across the top drags the window;
+ * anything clickable is cut out of it.
+ */
+.titlebar-drag {
+  display: none;
+}
+.desktop-mac .titlebar-drag {
+  display: block;
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 52px;
+  -webkit-app-region: drag;
+  /* Painted first, so the clickable things painted after it (a header's logo,
+     search box, buttons — not only the positioned islands) cut themselves out. */
+  z-index: -1;
+}
+.desktop-mac :is(button, a, input, textarea, select, label, [role='button'], [role='menu'], [role='dialog'], .island, .menu) {
+  -webkit-app-region: no-drag;
+}
+
+@layer components {
+  /* A floating island: the top bar's groups, the zoom pill, the toast. */
+  .island {
+    background: var(--color-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow-float);
+  }
+
+  /* A side panel. */
+  .card {
+    background: var(--color-card);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Section titles inside panels. */
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  /* A small secondary button. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: var(--color-paper);
+    font-size: 12px;
+    color: var(--color-ink);
+    white-space: nowrap;
+    transition: background-color 0.12s;
+  }
+  .chip:hover:not(:disabled) {
+    background: var(--color-paper-deep);
+  }
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  /* A round icon button on a card or island. */
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    color: var(--color-ink);
+    transition: background-color 0.12s;
+  }
+  .icon-btn:hover:not(:disabled) {
+    background: var(--color-paper);
+  }
+  .icon-btn:disabled {
+    color: var(--color-ghost);
+    cursor: default;
+  }
+
+  /* The accent call-to-action. */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 18px;
+    border-radius: 18px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background-color 0.12s;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-accent-dark);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-ink);
+    font-size: 13px;
+    transition: background-color 0.12s;
+  }
+  .btn-ghost:hover {
+    background: var(--color-paper);
+  }
+
+  /* A menu (export, zoom, context menu). */
+  .menu {
+    background: var(--color-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow-pop);
+    padding: 6px;
+  }
+  .menu-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--color-ink);
+    text-align: left;
+  }
+  .menu-item:hover:not(:disabled) {
+    background: var(--color-paper);
+  }
+  .menu-item:disabled {
+    opacity: 0.4;
+  }
+}
+
+/* Checkerboard for transparent previews (layer thumbnails, crop). */
+.dv-checker {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #ece7dc 25%, transparent 25%, transparent 75%, #ece7dc 75%),
+    linear-gradient(45deg, #ece7dc 25%, transparent 25%, transparent 75%, #ece7dc 75%);
+  background-size: 12px 12px;
+  background-position:
+    0 0,
+    6px 6px;
+}
+
+/* "No colour": a white swatch struck through in red. */
+.dv-none {
+  background: linear-gradient(to top right, #fff calc(50% - 1px), #c23a22 calc(50% - 1px), #c23a22 calc(50% + 1px), #fff calc(50% + 1px));
+}
+
+/* Quiet scrollbars that sit on paper. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 4px;
+}
+
+/* Number inputs: no spinners; the value is typed or nudged with arrow keys. */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.palette-preview { container-type: inline-size; }
+.palette-tile-visual { aspect-ratio: 4 / 3; width: 100%; background: var(--color-paper-deep); }
+.palette-tile-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+/* Palette detail: full originals, restrained controls, proportional Chinese typesetting. */
+.palette-detail-full { padding: 0; overflow: visible; min-width: 0; }
+.palette-detail-title { margin: 0; font-family: var(--font-serif); font-size: clamp(20px, 2.2vw, 28px); font-weight: 900; line-height: 1.4; overflow-wrap: anywhere; }
+.palette-detail-top { display: grid; grid-template-columns: minmax(0, min(calc(100% - 324px), var(--palette-image-width, 720px))) minmax(300px, 1fr); gap: 24px; align-items: start; }
+.palette-original { display: flex; min-width: 0; width: 100%; align-items: center; justify-content: center; border-radius: 18px; overflow: hidden; }
+.palette-original-empty { min-height: 320px; background: var(--color-paper-deep); padding: 20px; }
+.palette-original img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: contain; }
+.palette-controls { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+.palette-controls .palette-role-fields { gap: 8px; }
+.palette-examples { display: grid; gap: 18px; width: 100%; margin: 8px 0 0; }
+.palette-example-row { display: grid; gap: 24px; align-items: start; }
+/* Column weights follow the artwork ratios: 16/9 : 1 and 3/4 : 16/9. */
+.palette-example-row-first { grid-template-columns: minmax(0, 16fr) minmax(0, 9fr); }
+.palette-example-row-second { grid-template-columns: minmax(0, 27fr) minmax(0, 64fr); }
+.palette-slide .palette-art, .palette-data .palette-art { aspect-ratio: 16 / 9; }
+.palette-social .palette-art { aspect-ratio: 1; }
+.palette-poster .palette-art { aspect-ratio: 3 / 4; }
+.palette-art > div { height: 100%; }
+.palette-example { margin: 0; min-width: 0; }
+.palette-art { container-type: inline-size; border: 1px solid rgba(60, 48, 20, .16); border-radius: 10px; box-shadow: 0 2px 4px rgba(60, 48, 20, .04), 0 8px 20px rgba(60, 48, 20, .08); }
+.palette-art h3, .palette-art p { margin: 0; }
+.palette-art h3 { font-family: var(--font-serif); font-weight: 900; line-height: 1.5; }
+.palette-art mark { padding: 0 .07em; border-radius: .06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.palette-art p { line-height: 1.8; }
+.palette-example figcaption { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--color-muted); }
+.slide-content { display: flex; flex-direction: column; justify-content: center; padding: 8%; position: relative; }
+.slide-content h3 { font-size: 7cqw; white-space: nowrap; }
+.slide-content p { font-size: max(12px, 2.5cqw); margin-top: 2cqw; }
+.sample-dot { width: 1.2cqw; height: 1.2cqw; border-radius: 50%; margin-bottom: 4cqw; }
+.sample-page { position: absolute; right: 8%; bottom: 9%; font-size: max(12px, 1.8cqw); }
+.poster-content { padding: 9%; position: relative; display: flex; flex-direction: column; }
+.poster-kicker { font-size: max(12px, 2.8cqw); letter-spacing: .12em; }
+.poster-content h3 { font-size: 9cqw; margin-top: 6cqw; }
+.poster-shape { height: 35cqw; width: 60cqw; border-radius: 50% 50% 3% 3%; margin: 7cqw auto; display: flex; align-items: end; justify-content: center; }
+.poster-shape i { width: 22cqw; height: 27cqw; border-radius: 50% 50% 0 0; }
+.poster-content p { font-size: max(12px, 3cqw); }
+.poster-foot { margin-top: auto; display: flex; align-items: center; gap: 2cqw; font-size: max(12px, 2.5cqw); }
+.poster-foot i { width: 5cqw; height: .7cqw; }
+.social-content { padding: 9%; display: flex; flex-direction: column; }
+.social-content > span:first-child { font-size: max(12px, 3cqw); }
+.social-quote { font-family: var(--font-serif); font-size: 17cqw; line-height: 1; height: 17cqw; margin-top: 4cqw; }
+.social-content h3 { font-size: 7.5cqw; }
+.social-content p { font-size: max(12px, 2.8cqw); margin-top: 4cqw; }
+.social-foot { display: flex; align-items: center; gap: 2cqw; font-size: max(12px, 2.5cqw); margin-top: auto; }
+.social-foot i { width: 1.4cqw; height: 1.4cqw; border-radius: 50%; }
+.data-content { padding: 6%; display: flex; flex-direction: column; }
+.data-kicker { font-size: max(12px, 2.5cqw); }
+.data-content h3 { font-size: 5cqw; margin-top: 3cqw; }
+.data-metrics { display: flex; align-items: end; gap: 10cqw; margin: 2cqw 0; }
+.data-metrics > div:first-child { display: flex; flex-direction: column; }
+.data-metrics strong { font-size: 14cqw; font-weight: 600; line-height: 1; }
+.data-metrics span { font-size: max(12px, 2.5cqw); margin-top: 1cqw; }
+.data-chart { display: flex; align-items: end; gap: 2cqw; height: 18cqw; flex: 1; }
+.data-chart i { flex: 1; border-radius: 1cqw 1cqw 0 0; }
+.data-content p { display: flex; align-items: center; gap: 2cqw; margin-top: auto; font-size: max(12px, 2.4cqw); }
+.data-content p i { width: 1cqw; height: 1cqw; border-radius: 50%; }
+@media (max-width: 850px) {
+  .palette-detail-top { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .palette-original { max-width: var(--palette-image-width, 100%); }
+  .palette-original-empty { min-height: 220px; padding: 12px; }
+}
+@media (max-width: 767px) {
+  .palette-examples, .palette-example-row { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}

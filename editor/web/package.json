@@ -1,0 +1,35 @@
+{
+  "name": "davinci-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && pnpm run build:renderer",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "build:renderer": "esbuild src/render/node.ts --bundle --platform=node --format=cjs --target=node20 --outfile=dist/renderer/renderer.cjs --log-level=warning && cp node_modules/canvaskit-wasm/bin/canvaskit.wasm dist/renderer/"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "canvaskit-wasm": "^0.42.0",
+    "fflate": "^0.8.3",
+    "fontkit": "^2.0.4",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/node": "^24.2.0",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.5"
+  },
+  "packageManager": "pnpm@11.25.0"
+}

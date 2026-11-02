@@ -1,0 +1,24 @@
+# Credentials and personal data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.db
+*.db-wal
+*.db-shm
+**/data/
+/output/
+/projects/
+# Dependencies, build products, caches
+node_modules/
+.pnpm-store/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.log
+/editor/bin/
+/editor/app/dist/
+/editor/web/dist/*
+!/editor/web/dist/.gitkeep

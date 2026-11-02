@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "style_id": "paper_cut",
+  "style_version": 1,
+  "selection_reason": "文明习惯主题，彩纸色块清楚，便于独立裁剪",
+  "palette": {
+    "bg": "#FFF7E8",
+    "text": "#25354A",
+    "primary": "#287A8E",
+    "accent": "#E8754F",
+    "secondary": "#E8B94C"
+  },
+  "typography": {
+    "body": "按本机可用中文字体选择并校验",
+    "title": "可编辑中文标题；适度活泼，保持识读"
+  },
+  "decorations": "少量且服务主题",
+  "references": [],
+  "image_provider": "lemon_api",
+  "provider_root_env": "FELT_BOARD_LEMON_ROOT",
+  "review_status": "example_not_user_confirmation"
+}

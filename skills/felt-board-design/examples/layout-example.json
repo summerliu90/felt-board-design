@@ -1,0 +1,183 @@
+{
+  "name": "文明润童心 · 丰富内容与六模块示例（待确认）",
+  "board": {
+    "width_cm": 400,
+    "height_cm": 104,
+    "margin_cm": 5,
+    "background": "#F5ECD5"
+  },
+  "title": {
+    "id": "T01",
+    "title": "文明润童心，品行促成长",
+    "x_cm": 44,
+    "y_cm": 5,
+    "width_cm": 312,
+    "height_cm": 15,
+    "shape": "ribbon"
+  },
+  "modules": [
+    {
+      "id": "M01",
+      "title": "文明藏在小事里",
+      "x_cm": 8,
+      "y_cm": 29,
+      "width_cm": 58,
+      "height_cm": 65,
+      "shape": "cloud",
+      "summary": "文明含义与日常小事",
+      "content_chars": 116,
+      "reading_order": 1,
+      "group": "左区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 9.28,
+        "y_cm": 20,
+        "width_cm": 39.440000000000005,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 12.76,
+        "y_cm": 42,
+        "width_cm": 32.480000000000004,
+        "height_cm": 13
+      }
+    },
+    {
+      "id": "M02",
+      "title": "从故事中学会冷静",
+      "x_cm": 72,
+      "y_cm": 25,
+      "width_cm": 72,
+      "height_cm": 72,
+      "shape": "book",
+      "summary": "典故经过、结果、启示和当代提醒",
+      "content_chars": 117,
+      "reading_order": 2,
+      "group": "左区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 11.52,
+        "y_cm": 20,
+        "width_cm": 48.96,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 15.84,
+        "y_cm": 42,
+        "width_cm": 40.32000000000001,
+        "height_cm": 20
+      }
+    },
+    {
+      "id": "M03",
+      "title": "一句礼貌暖人心",
+      "x_cm": 150,
+      "y_cm": 31,
+      "width_cm": 59,
+      "height_cm": 62,
+      "shape": "ribbon",
+      "summary": "借书、道谢、道歉的完整表达",
+      "content_chars": 116,
+      "reading_order": 3,
+      "group": "中区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 9.44,
+        "y_cm": 20,
+        "width_cm": 40.120000000000005,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 12.98,
+        "y_cm": 42,
+        "width_cm": 33.040000000000006,
+        "height_cm": 10
+      }
+    },
+    {
+      "id": "M04",
+      "title": "有序让大家更方便",
+      "x_cm": 215,
+      "y_cm": 26,
+      "width_cm": 62,
+      "height_cm": 68,
+      "shape": "hexagon",
+      "summary": "排队、举手、慢行及原因",
+      "content_chars": 109,
+      "reading_order": 4,
+      "group": "中区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 9.92,
+        "y_cm": 20,
+        "width_cm": 42.160000000000004,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 13.64,
+        "y_cm": 42,
+        "width_cm": 34.720000000000006,
+        "height_cm": 16
+      }
+    },
+    {
+      "id": "M05",
+      "title": "有分歧，好好说",
+      "x_cm": 283,
+      "y_cm": 31,
+      "width_cm": 55,
+      "height_cm": 62,
+      "shape": "leaf",
+      "summary": "倾听、表达与协商的具体场景",
+      "content_chars": 113,
+      "reading_order": 5,
+      "group": "右区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 8.8,
+        "y_cm": 20,
+        "width_cm": 37.400000000000006,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 12.1,
+        "y_cm": 42,
+        "width_cm": 30.800000000000004,
+        "height_cm": 10
+      }
+    },
+    {
+      "id": "M06",
+      "title": "物品也有自己的家",
+      "x_cm": 344,
+      "y_cm": 28,
+      "width_cm": 48,
+      "height_cm": 66,
+      "shape": "rect",
+      "summary": "整理、归位与爱护公共物品",
+      "content_chars": 111,
+      "reading_order": 6,
+      "group": "右区",
+      "cut_group": "标题/句段/插画/底板",
+      "text_box": {
+        "x_cm": 7.68,
+        "y_cm": 20,
+        "width_cm": 32.64,
+        "height_cm": 20
+      },
+      "illustration_box": {
+        "x_cm": 10.56,
+        "y_cm": 42,
+        "width_cm": 26.880000000000003,
+        "height_cm": 14
+      }
+    }
+  ],
+  "exclusions": [],
+  "allowed_overlaps": [],
+  "assumptions": [
+    "示例尺寸沿用既有任务，仅用于技能演示；不能作为所有板报默认值",
+    "模块字数来自完整示例正文；阅读距离和实际字高尚未确认，规划框不证明容量已通过"
+  ],
+  "stage": "layout_demo_unconfirmed"
+}

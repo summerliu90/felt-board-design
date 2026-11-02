@@ -1,0 +1,16 @@
+felt-board-design
+
+This distribution contains software derived from DaVinci:
+https://github.com/ChrisZou/davinci
+Original license: Apache License, Version 2.0 (see LICENSE and editor/LICENSE).
+Original project documentation is retained in editor/README.md.
+
+Changes in this distribution include the blackboard-design skill and eight-style
+prompt catalog, Lemon image CLI adapter, physical-size A3/A4 printing and packing,
+editable print boards and project packages, bulk print selection/removal,
+a website interface without brand logo, and startup that tolerates failure of
+the optional macOS native cutout helper.
+
+The imported DaVinci source was a local source snapshot; an exact upstream commit
+was not recorded. No claim is made that this is an official DaVinci release.
+Third-party dependencies remain subject to their respective licenses.

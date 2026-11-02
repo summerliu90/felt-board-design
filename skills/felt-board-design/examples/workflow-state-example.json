@@ -1,0 +1,42 @@
+{
+  "task_name": "示例：文明润童心",
+  "current_stage": "content",
+  "content_version": "v001",
+  "layout_version": null,
+  "visual_version": null,
+  "stages": {
+    "content": {
+      "status": "draft",
+      "artifacts": [],
+      "confirmation": null
+    },
+    "layout": {
+      "status": "not_started",
+      "artifacts": [],
+      "confirmation": null
+    },
+    "draft": {
+      "status": "not_started",
+      "artifacts": [],
+      "confirmation": null
+    },
+    "final": {
+      "status": "not_started",
+      "artifacts": [],
+      "confirmation": null
+    },
+    "layered": {
+      "status": "not_started",
+      "artifacts": [],
+      "confirmation": null
+    }
+  },
+  "pending": [
+    "确认实际任务的内容；本文件仅为状态结构示例"
+  ],
+  "confirmation_rule": "仅记录真实用户明确确认或已授权连续制作范围；自动续跑不算确认",
+  "style_id": null,
+  "style_lock_file": "style-lock.json",
+  "image_provider": "lemon_api",
+  "image_jobs_file": "image-jobs.json"
+}

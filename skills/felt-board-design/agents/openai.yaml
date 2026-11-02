@@ -1,0 +1,4 @@
+interface:
+  display_name: "多风格展示型黑板报设计"
+  short_description: "八种低年级风格与完整提示词，策划分层打印并支持Lemon图片渠道"
+  default_prompt: "使用 $felt-board-design，根据主题与对象选择并锁定适合的风格，先完成内容及真实比例布局，再用配置的Lemon图片渠道制作独立素材，重组可编辑工程并按需生成A3/A4打印包。"

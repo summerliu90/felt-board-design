@@ -1,0 +1,12 @@
+{
+  "asset_id": "M01-CHAR01",
+  "kind": "character",
+  "style_id": "paper_cut",
+  "subject": "一名穿校服的小学生微笑着举手向右侧问好，全身与书包完整",
+  "purpose": "低年级文明礼仪黑板报中的独立人物",
+  "width_cm": 16,
+  "height_cm": 23,
+  "target_dpi": 300,
+  "min_dpi": 200,
+  "quality": "high"
+}
